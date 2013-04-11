@@ -37,6 +37,9 @@
             },
 
             insertDeleteLink = function(row) {
+                if (!options.useDeleteLinks) {
+                    return
+                }
                 if (row.is('TR')) {
                     // If the forms are laid out in table rows, insert
                     // the remove button into the last table cell:
@@ -200,6 +203,7 @@
         beforeadd:null,                  // Function called each time before a new form is added
         added: null,                     // Function called each time a new form is added
         beforeremove: null,              // Function called each time before a new form is added
-        removed: null                    // Function called each time a form is deleted
+        removed: null,                   // Function called each time a form is deleted
+        useDeleteLinks: true             // Add the delete links to each new form?
     };
 })(jQuery)
