@@ -1,5 +1,8 @@
 # Django settings for demo project.
+from distutils.version import StrictVersion
 import os
+
+import django
 
 PROJECT_DIR = os.path.normpath(os.path.dirname(__file__))
 
@@ -85,8 +88,14 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
 
+# new versions of Django put auth middleware in a different location
+if StrictVersion(django.get_version()) >= StrictVersion('1.4'):
+    AUTH_PROCESSOR = 'django.contrib.auth.context_processors.auth'
+else:
+    AUTH_PROCESSOR = 'django.core.context_processors.auth'
+
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
+    AUTH_PROCESSOR,
     'django.core.context_processors.media',
     #'django.core.context_processors.i18n',
     #'django.core.context_processors.request',
