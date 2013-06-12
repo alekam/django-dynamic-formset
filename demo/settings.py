@@ -1,8 +1,5 @@
 # Django settings for demo project.
-from distutils.version import StrictVersion
 import os
-
-import django
 
 PROJECT_DIR = os.path.normpath(os.path.dirname(__file__))
 
@@ -68,18 +65,10 @@ ADMIN_MEDIA_PREFIX = '/media/'
 SECRET_KEY = 's2r2k*nqosri4%)5c8w^--jpv+8tzrvbzr11p-frp9kq5ot13v'
 
 # List of callables that know how to import templates from various sources.
-
-# new Django doens't have load_template_source
-if StrictVersion(django.get_version()) >= StrictVersion('1.4'):
-    TEMPLATE_LOADERS = (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader'
-    )
-else:
-    TEMPLATE_LOADERS = (
-        'django.template.loaders.filesystem.load_template_source',
-        'django.template.loaders.app_directories.load_template_source',
-    )
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader'
+)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -96,14 +85,8 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
 
-# new versions of Django put auth middleware in a different location
-if StrictVersion(django.get_version()) >= StrictVersion('1.4'):
-    AUTH_PROCESSOR = 'django.contrib.auth.context_processors.auth'
-else:
-    AUTH_PROCESSOR = 'django.core.context_processors.auth'
-
 TEMPLATE_CONTEXT_PROCESSORS = (
-    AUTH_PROCESSOR,
+    'django.contrib.auth.context_processors.auth'
     'django.core.context_processors.media',
     #'django.core.context_processors.i18n',
     #'django.core.context_processors.request',

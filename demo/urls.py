@@ -1,27 +1,16 @@
 import django
+import django.shortcuts
 from django.conf import settings
 from django.conf.urls.defaults import *
 from django.contrib import admin
-
-try:
-
-    # old Django has function based generic views
-    from django.views.generic.simple import direct_to_template
-except ImportError:
-
-    # function based generic views are removed in newer versions of Django
-    def direct_to_template(*args, **kwargs):
-        from django.shortcuts import render
-        kwargs['template_name'] = kwargs.pop('template')
-        kwargs['dictionary'] = kwargs.pop('extra_context')
-        return render(*args, **kwargs)
-
 
 major, minor = django.VERSION[:2]
 is_pre12 = (major <= 1 and minor < 2)
 
 urlpatterns = patterns('',
-    (r'^$', direct_to_template, {'template': 'index.html', 'extra_context': dict(is_pre12=is_pre12)}),
+    (r'^$', django.shortcuts.render, {'template_name': 'index.html',
+                                      'dictionary': {'is_pre12':is_pre12}
+                                      }),
     (r'^examples/', include('example.urls')),
 )
 
