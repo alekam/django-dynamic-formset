@@ -46,3 +46,4 @@ You can now browse to ``http://localhost:8000/`` and view the examples.
 .. _Python: http://python.org/
 .. _Django: http://www.djangoproject.com/
 .. _PySQLite: http://oss.itsystementwicklung.de/trac/pysqlite
+.. _django-ajax-selects: https://github.com/crucialfelix/django-ajax-selects
