@@ -79,7 +79,7 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth'
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.media',
     #'django.core.context_processors.i18n',
     #'django.core.context_processors.request',
