@@ -29,6 +29,11 @@ For instructions on installing them, see their respective sites.
 You'll also need PySQLite_ - if you've got Python 2.5 and above, this
 is already included in the standard library.
 
+The demo project also needs the django-ajax-selects_ package to be installed.
+You can install it with this command:::
+
+    pip install django-ajax-selects
+
 Once you've set up Django, run the following commands to set up the
 database and start the development server::
 
